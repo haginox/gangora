@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Hexágono Velocidade Ajustada</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .gangorra-container {
+            position: relative;
+            width: 600px;
+            height: 120px;
+            display: flex;
+            align-items: flex-end;
+            /* Tempo ajustado para 1.2s para ficar rápido, mas visível */
+            animation: inclinar-gangorra 1.2s linear infinite alternate;
+        }
+
+        .hexagono {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            position: absolute;
+            bottom: 8px; 
+            
+            /* Efeito de brilho para o rastro de movimento */
+            box-shadow: 0 0 15px white, 0 0 30px rgba(255,255,255,0.4);
+            
+            /* Sincronizado com a base em modo linear (bate e volta direto) */
+            animation: rolar-ajustado 1.2s linear infinite alternate;
+        }
+
+        .linha {
+            width: 100%;
+            height: 8px;
+            background-color: white;
+            border-radius: 4px;
+        }
+
+        /* Movimento da gangorra */
+        @keyframes inclinar-gangorra {
+            0% { transform: rotate(12deg); }
+            100% { transform: rotate(-12deg); }
+        }
+
+        /* Movimento do hexágono */
+        @keyframes rolar-ajustado {
+            0% {
+                left: 0%;
+                transform: rotate(0deg);
+            }
+            100% {
+                left: calc(100% - 60px);
+                /* 1440 graus para um efeito de giro contínuo e veloz */
+                transform: rotate(1440deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="gangorra-container">
+        <div class="hexagono"></div>
+        <div class="linha"></div>
+    </div>
+
+</body>
+</html>
